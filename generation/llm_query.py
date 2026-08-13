@@ -42,7 +42,7 @@ class RAGQueryEngine:
     def __init__(
         self,
         retriever: Retriever,
-        model: str = "Groq",
+        model: str = "llama-3.3-70b-versatile",
         api_key: Optional[str] = None,
         base_url: str = "https://api.groq.com/openai/v1",
     ):

@@ -65,10 +65,6 @@ with st.sidebar:
         help="Stored only for this session, never written to disk.",
     )
     
-
-    st.divider()
-    st.header("📄 Build / Update Index")
-
 # ---------------------------------------------------------------------------
 # Main area: search / chat
 # ---------------------------------------------------------------------------
