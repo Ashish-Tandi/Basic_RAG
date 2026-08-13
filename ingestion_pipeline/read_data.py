@@ -5,6 +5,7 @@ from langchain_core.documents import Document
 class FileLoader:
     """
     Read and shows the contents of files given in file_location.
+
     Args:
          file_location (str): path to file
     """
@@ -16,6 +17,7 @@ class FileLoader:
         """
         Loads text, extracts tables (in Markdown format) from multiple PDF
         file directly using LangChain's PyMuPDFLoader.
+
         Returns:
             documents (list): list of content of pages in documents
         """
@@ -53,15 +55,3 @@ class FileLoader:
         print(page.page_content)
         print("-" * 50)
         print("Metadata:", page.metadata)
-
-
-
-if __name__ == "__main__":
-    FILE_LOCATION = "../doc"
-
-    processor = FileLoader(file_location=FILE_LOCATION)
-    loaded_docs = processor.load_pdf()
-
-    # Show the loaded content
-    print(f"\n--- Successfully Loaded {len(loaded_docs)} Page(s) ---")
-    processor.show_page(loaded_docs, 2)

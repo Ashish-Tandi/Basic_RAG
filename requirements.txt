@@ -1,3 +1,11 @@
-langchain-community~=0.4.2
-langchain-core~=1.5.3
-langchain-text-splitters~=1.1.2
+streamlit
+openai
+langchain-core
+langchain-text-splitters
+langchain-community
+langchain-chroma
+langchain-huggingface
+sentence-transformers
+pymupdf
+chromadb
+ 

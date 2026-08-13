@@ -1,7 +1,6 @@
-from read_data import FileLoader
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
 
-class DocumentChunker:
+class Chunker:
     """
     Handles chunking of loaded document data (with metadata) into smaller,
     manageable segments optimized for LLM ingestion.
@@ -61,10 +60,3 @@ class DocumentChunker:
                 chunked_documents.append(chunk)
 
         return chunked_documents
-
-if __name__ == "__main__":
-    loader = FileLoader("../doc")
-    docs = loader.load_pdf()
-    chunker = DocumentChunker(loaded_data=docs)
-    chunked = chunker.markdown_chunking()
-    print(chunked[100])
