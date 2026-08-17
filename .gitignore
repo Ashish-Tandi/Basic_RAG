@@ -1,3 +1,7 @@
+.gitignore
 .idea/
 doc
 vectordb
+chat_memory
+chat_sessions
+api.py
