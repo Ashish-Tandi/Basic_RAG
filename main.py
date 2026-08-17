@@ -22,14 +22,14 @@ if __name__ == "__main__":
     print(f"Created {len(chunked)} chunk(s)")
 
     embeder = Embedding(chunked)
-    vector_store = embeder.sbert_embeder(persist_directory="./vectordb")
+    vector_store = embeder.sbert_embeder(persist_directory="./vectordb", mode="recreate")
     print("Vector store built and persisted to ./vectordb")
 
     first_chunk_text = chunked[0].page_content
     print("\nOriginal Text Chunk Preview:")
     print(f"--> {first_chunk_text[:150]}...\n")
 
-    single_vector = vector_store.embedding_function.embed_query(first_chunk_text)
+    single_vector = vector_store._embedding_function.embed_query(first_chunk_text)
 
     print("--- Vector Space Properties ---")
     print(f"Dimensionality (Length of vector): {len(single_vector)}")

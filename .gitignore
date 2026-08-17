@@ -5,3 +5,4 @@ vectordb
 chat_memory
 chat_sessions
 api.py
+__pycache__

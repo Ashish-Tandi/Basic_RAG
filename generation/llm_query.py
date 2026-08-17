@@ -42,8 +42,6 @@ SYSTEM_PROMPT = (
     "still ground every factual claim in the provided context excerpts."
     "Only If the user asks for a comparison between multiple elements, systems, "
     "or concepts, provide a detailed technical comparison in the text, "
-    "and conclude the response with a Markdown comparison table summarizing "
-    "the key parameters."
 )
 
 

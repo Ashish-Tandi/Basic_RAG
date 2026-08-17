@@ -111,7 +111,7 @@ def get_vector_store():
     return st.session_state.vector_store
 
 
-def get_engine(api_key: str, top_k: int) -> RAGQueryEngine:
+def get_engine(top_k: int, api_key: str) -> RAGQueryEngine:
     """Builds a RAGQueryEngine wired to the persisted model-memory store."""
     retriever = Retriever(get_vector_store(), k=top_k)
     return RAGQueryEngine(
@@ -144,11 +144,14 @@ sessions_data = load_sessions()
 with st.sidebar:
     st.header("⚙️ Settings")
 
-    groq_api_key = st.text_input(
-        GROQ_API,
-        type="password",
-        value=os.environ.get("GROQ_API_KEY", ""),
-        help="Stored only for this session, never written to disk.",
+    groq_api_key = (
+        st.text_input(
+            "Groq API key",
+            type="password",
+            value=os.environ.get("GROQ_API_KEY", ""),
+            help="Stored only for this session, never written to disk.",
+        )
+        or GROQ_API
     )
 
     st.divider()
@@ -193,10 +196,6 @@ if not st.session_state.index_built:
 question = st.chat_input("Ask a question about your documents...")
 
 if question:
-    if not groq_api_key:
-        st.error("Please enter your Groq API key in the sidebar.")
-        st.stop()
-
     top_k = 4  # Default retrieval chunk count
 
     # A fresh "New chat" only gets a real thread_id -- and only appears in
