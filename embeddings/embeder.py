@@ -126,3 +126,27 @@ class Embedding:
           vector_store.add_documents(documents=new_docs, ids=new_ids)
           
       return vector_store
+
+  @staticmethod
+  def load_vector_store(model_name="all-MiniLM-L6-v2", persist_directory="./vectordb"):
+    """Loads an existing persisted ChromaDB vector store without re-embedding.
+
+    Use this in the search/query app so you don't rebuild embeddings on
+    every run -- only call sbert_embeder() once during ingestion.
+
+    Args:
+        model_name (str): Must match the model used when the store was built.
+        persist_directory (str): Path to the existing persisted ChromaDB.
+
+    Returns:
+        Chroma: A LangChain Chroma vector store instance backed by the
+          existing on-disk data.
+    """
+    embeddings_model = HuggingFaceEmbeddings(model_name=model_name)
+
+    vector_store = Chroma(
+        embedding_function=embeddings_model,
+        persist_directory=persist_directory,
+    )
+
+    return vector_store
